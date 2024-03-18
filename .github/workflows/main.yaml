@@ -25,6 +25,7 @@ jobs:
 
       - name: Format Terraform files
         run: terraform fmt -check
+        continue-on-error: false
 
       - name: Terraform init
         run: terraform init 
@@ -32,7 +33,7 @@ jobs:
 
       - name: Create Terraform execution plan
         run: terraform plan -no-color -input=false -out planfile
-        continue-on-error: true
+    
 
       - name: Apply Terraform changes
         if: success()
