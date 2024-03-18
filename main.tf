@@ -1,13 +1,13 @@
 terraform {
   backend "s3" {
-    bucket                  = "tfstatebucketnari"
-    key                     = "my-terraform-project"
-    region                  = "us-east-2"
+    bucket = "tfstatebucketnari"
+    key    = "my-terraform-project"
+    region = "us-east-2"
     # shared_credentials_file = "~/.aws/credentials"
   }
 }
 
-provider "aws"{
+provider "aws" {
   region = "us-east-2"
 }
 
