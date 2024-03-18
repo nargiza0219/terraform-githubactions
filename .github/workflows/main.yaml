@@ -1,6 +1,7 @@
 name: "creating ECR using terraform and github actions workflow"
 on:
   workflow_dispatch:
+
 env:
   # AWS credentials and Terraform state bucket
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -18,6 +19,12 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
+
+      - name: Format Terraform files
+        run: terraform fmt -check
+
+      - name: Initialize Terraform
+        run: terraform init
 
       - name: Create Terraform execution plan
         run: terraform plan -no-color -input=false -out planfile
