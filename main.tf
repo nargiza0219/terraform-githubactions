@@ -1,5 +1,5 @@
 provider "aws"{
-  region = "us-est-2"
+  region = "us-east-2"
 }
 resource "aws_ecr_repository" "foo" {
   name                 = "bar"
