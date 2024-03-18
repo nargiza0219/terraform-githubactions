@@ -5,7 +5,6 @@ env:
   # AWS credentials and Terraform state bucket
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}
   AWS_REGION: us-east-2
 
 jobs:
@@ -19,9 +18,6 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-
-      - name: Copy backend configuration file
-        run:  terraform init -backend-config="bucket=$BUCKET_TF_STATE"
 
       - name: Create Terraform execution plan
         run: terraform plan -no-color -input=false -out planfile
