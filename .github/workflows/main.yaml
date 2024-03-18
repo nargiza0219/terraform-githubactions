@@ -22,10 +22,13 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Initialize Terraform
+      - name: Copy backend configuration file
         run: |
           echo 'terraform { backend "s3" { bucket = "${BUCKET_TF_STATE}" key = "terraform.tfstate" region = "${AWS_REGION}" } }' > backend.tf
-          terraform init
+          cat backend.tf
+
+      - name: Initialize Terraform
+        run: terraform init
 
       - name: Create Terraform execution plan
         run: terraform plan -no-color -input=false -out planfile
